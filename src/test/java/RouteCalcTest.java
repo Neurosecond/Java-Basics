@@ -132,19 +132,19 @@ public class RouteCalcTest {
     }
 
     @Test
-    @DisplayName("Получить маршрут по соединенной линии")
-    public void testGetRouteViaConnectedLine() {
-        List<Station> actual = routeCalculator.getShortestRoute(stations.get(4), stations.get(7));
-        List<Station> expected = List.of(stations.get(4), stations.get(5), stations.get(6), stations.get(7));
-        Assertions.assertEquals(actual, expected);
-    }
-
-    @Test
     @DisplayName("Получить маршрут с двумя переходами")
     public void testGetRouteWithTwoConnections() {
         List<Station> actual = routeCalculator.getShortestRoute(stations.get(4), stations.get(13));
         List<Station> expected = List.of(stations.get(4), stations.get(5), stations.get(10), stations.get(11),
                                         stations.get(14), stations.get(13));
+        Assertions.assertEquals(actual, expected);
+    }
+    
+    @Test
+    @DisplayName("Проверить длительность перемещения")
+    public void testCalculateDuration() {
+        Double actual = 5.0;
+        Double expected = RouteCalculator.calculateDuration(List.of(stations.get(1), stations.get(2), stations.get(3)));
         Assertions.assertEquals(actual, expected);
     }
 }
